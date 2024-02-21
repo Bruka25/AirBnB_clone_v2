@@ -140,3 +140,16 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 (hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
 ```
 <br>
+
+The following python files and tests are for ALX 0x02. AirBnB clone - MySQL project, inside it contains the following python files and tests:
+
+* Improved unitests for the sql AirBnB_clone console
+* Updated def do_create(self, arg): function of your command interpreter (console.py) to allow for object creation with given parameters
+* A script that prepares a MySQL server for the project
+* A script that prepares a MySQL server for the project
+* Updated FileStorage: (models/engine/file_storage.py)
+* Changed your storage engine to use SQLAlchemy
+* Updated User: (models/user.py)
+* Updated Place: (models/place.py)
+* Updated Review: (models/review.py)
+* Updated Amenity: (models/amenity.py)

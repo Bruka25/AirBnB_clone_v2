@@ -17,6 +17,8 @@ class HBNBCommand(cmd.Cmd):
     """Defines the HolbertonBnB command interpreter."""
 
     prompt = "(hbnb) "
+    storage.reload()
+
     __classes = {
         "BaseModel",
         "User",

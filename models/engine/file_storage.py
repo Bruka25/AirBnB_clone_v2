@@ -11,22 +11,13 @@ from models.user import User
 
 
 class FileStorage:
-    """Represent an abstracted storage engine.
-
-    Attributes:
-        __file_path (str): The name of the file to save objects to.
-        __objects (dict): A dictionary of instantiated objects.
-    """
+    """Represent an abstracted storage engine."""
 
     __file_path = "file.json"
     __objects = {}
 
     def all(self, cls=None):
-        """Return a dictionary of instantiated objects in __objects.
-
-        If a cls is specified, returns a dictionary of objects of that type.
-        Otherwise, returns the __objects dictionary.
-        """
+        """Return a dictionary of instantiated objects in __objects."""
         if cls is not None:
             if type(cls) == str:
                 cls = eval(cls)

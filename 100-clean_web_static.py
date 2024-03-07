@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/python3
 """Fabric script to remove outdated versions
    on the AirBnB clone
 """

@@ -5,6 +5,7 @@
 """
 from flask import Flask
 from flask import abort
+from flask import render_template
 
 app = Flask(__name__)
 
@@ -48,7 +49,6 @@ def number(n):
 def number_template(n):
     """Displays an HTML page only if <n> is an integer"""
     return render_template("5-number.html", n=n)
-
 
 
 if __name__ == "__main__":

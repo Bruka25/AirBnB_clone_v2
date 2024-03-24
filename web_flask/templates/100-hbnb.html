@@ -9,105 +9,98 @@
     <link rel="icon" href="../static/images/icon.png" />
     <title>HBnB</title>
   </head>
-  <body>
-    <header>
-      <div class="logo"></div>
-    </header>
-    <div class="container">
-      <section class="filters">
-	<div class="locations">
-	  <h3>States</h3>
-	  <h4>&nbsp;</h4>
-	  <div class="popover">
-	    <ul>
-	      <li>
-		<h2>Arizona:</h2>
-		<ul>
-		  <li>Pheonix</li>
-		  <li>Sedona</li>
-		</ul>
-	      </li>
-	      <li>
-		<h2>California:</h2>
-		<ul>
-		  <li>LA</li>
-		  <li>SF</li>
-		</ul>
-	      </li>
-	    </ul>
-	  </div>
-	</div>
-	<div class="amenities">
-	  <h3>Amenities</h3>
-	  <h4>&nbsp;</h4>
-	  <div class="popover">
-	    <ul>
-	      <li>Internet</li>
-	      <li>TV</li>
-	      <li>Kitchen</li>
-	      <li>Iron</li>
-	    </ul>
-	  </div>
-	</div>
-	<button type="button">Search</button>
-      </section>
-      <section class="places">
-	<h1>Places</h1>
-	<article>
-	  <div class="title_box">
-	    <h2>My Home</h2>
-	    <div class="price_by_night">$129</div>
-	  </div>
-	  <div class="information">
-	    <div class="max_guest">6 Guests</div>
-            <div class="number_rooms">4 Bedroom</div>
-            <div class="number_bathrooms">2 Bathroom</div>
-	  </div>
-	  <div class="user">
-            <b>Owner:</b> Kevin Yook
-          </div>
-          <div class="description">
-	    This is my personal house in Korea please stay as much as you want if you come to Korea. Also as a complementary there is a tour guide who will help guide you though Seoul me.
-          </div>
-	</article>
-	<article>
-	  <div class="title_box">
-	    <h2>Tiny House</h2>
-	    <div class="price_by_night">$69</div>
-	  </div>
-	  <div class="information">
-	    <div class="max_guest">3 Guests</div>
-            <div class="number_rooms">1 Bedroom</div>
-            <div class="number_bathrooms">1 Bathroom</div>
-	  </div>
-	  <div class="user">
-            <b>Owner:</b> John Doe
-          </div>
-          <div class="description">
-	    This house is John's personal hideout. It contains blood stained walls as a feature to the luxery blury light.
-          </div>
-	</article>
-	<article>
-	  <div class="title_box">
-	    <h2>A Suite</h2>
-	    <div class="price_by_night">$179</div>
-	  </div>
-	  <div class="information">
-	    <div class="max_guest">4 Guests</div>
-            <div class="number_rooms">4 Bedroom</div>
-            <div class="number_bathrooms">4 Bathroom</div>
-	  </div>
-	  <div class="user">
-            <b>Owner:</b> Bob
-          </div>
-          <div class="description">
-	    This house is a fine suite created by designer bob. Each room has it's own bathrooms
-          </div>
-	</article>
-      </section>
-    </div>
-    <footer>
-      <p>Holberton School</p>
-    </footer>
-  </body>
+
+  <BODY>
+    <HEADER></HEADER>
+
+    <MAIN>
+      <DIV class="container">
+        <SECTION class="filters" role="search">
+          <DIV class="locations">
+            <H3>States</H3>
+            <H4>&nbsp;</H4>
+            <DIV class="popover">
+							<UL>
+              {% for state in states.values()|sort(attribute="name") %}
+                <LI><STRONG>{{ state.name }}</STRONG>
+                  <UL>
+                  {% for city in state.cities|sort(attribute="name") %}
+                    <LI>{{ city.name }}</LI>
+                  {% endfor %}
+                  </UL>
+                </LI>
+              {% endfor %}
+              </UL>
+            </DIV>
+
+            </DIV><DIV class="amenities">
+              <H3>Amenities</H3>
+              <H4>&nbsp;</H4>
+              <UL class="popover">
+                {% for amenity in amenities.values()|sort(attribute="name") %}
+                  <LI>{{ amenity.name}}</LI>
+                {% endfor %}
+              </UL>
+            </DIV>
+          <BUTTON>Search</BUTTON>
+        </SECTION>
+
+        <SECTION class="places">
+          <H1>Places</H1>
+          {% for place in places.values()|sort(attribute="name") %}
+          <ARTICLE>
+            <DIV class="title_box">
+              <H2>{{ place.name }}</H2>
+              <DIV class="price_by_night">&#36;{{ place.price_by_night }}</DIV>
+            </DIV>
+
+            <DIV class="information">
+              <DIV class="max_guest">
+                <I class="fa fa-users fa-3x" aria-hidden="true"></I>
+                <BR>{{ place.max_guest }} Guests
+              </DIV>
+              <DIV class="number_rooms">
+                <I class="fa fa-bed fa-3x" aria-hidden="true"></I>
+                <BR>{{ place.number_rooms }} Rooms
+              </DIV>
+              <DIV class="number_bathrooms">
+                <I class="fa fa-bath fa-3x" aria-hidden="true"></I>
+                <BR>{{ place.number_bathrooms }} Bathrooms
+              </DIV>
+            </DIV>
+
+            <DIV class="user">
+              <STRONG>Owner:</STRONG> {{ place.user.first_name }} {{ place.user.last_name }}
+            </DIV>
+
+            <DIV class="description">{{ place.description|safe }}</DIV>
+
+            <DIV class="amenities">
+              <H2>Amenities</H2>
+              {% for amenity in place.amenities|sort(attribute="name") %}
+              <UL>
+                <LI><P>{{ amenity.name }}</P></LI>
+              </UL>
+              {% endfor %}
+            </DIV>
+
+            <DIV class="reviews">
+              <H2>{{ place.reviews.__len__() }} Reviews</H2>
+              {% for review in place.reviews %}
+              <H3>From {{ review.user.first_name }} the {{ review.created_at.date().__str__() }}</H3>
+              <UL>
+                <LI><P>{{ review.text|safe }}</P></LI>
+              </UL>
+            {% endfor %}
+            </DIV>
+          </ARTICLE>
+          {% endfor %}
+        </SECTION>
+      </DIV>
+    </MAIN>
+
+    <FOOTER>
+      Holberton School
+    </FOOTER>
+  </BODY>
 </html>

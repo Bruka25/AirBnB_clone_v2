@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""Starts a Flask web application.
-
-The application listens on 0.0.0.0, port 5000.
-Routes:
-    /cities_by_states: HTML page with a list of all states and related cities.
+"""Python script that Starts a Flask web application.
+   The application listens on 0.0.0.0, port 5000
+   /cities_by_states routes HTML page with a list of
+   all States and related cities
 """
 from models import storage
 from flask import Flask
